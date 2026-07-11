@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deep — Discover the Soul of Cameroon</title>
+<meta name="description" content="Deep is an AI-powered platform preserving and showcasing Cameroon's cultures, regions, languages, festivals and cuisine.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ TOAST NOTIFICATIONS ============ -->
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">D</span>
+      <span class="logo-text">Deep</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-i18n="nav.home">Home</a>
+      <a href="#explore" class="nav-link" data-i18n="nav.explore">Explore</a>
+      <a href="#regions" class="nav-link" data-i18n="nav.regions">Regions</a>
+      <a href="#culture" class="nav-link" data-i18n="nav.culture">Culture</a>
+      <a href="#tourism" class="nav-link" data-i18n="nav.tourism">Tourism</a>
+      <a href="#ai-assistant" class="nav-link" data-i18n="nav.ai">AI Assistant</a>
+
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-opt active" data-lang="en">EN</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-opt" data-lang="fr">FR</span>
+      </button>
+
+      <button class="bell-btn" id="bellBtn" aria-label="Festival notifications">
+        <i class="fa-solid fa-bell"></i>
+        <span class="bell-dot" id="bellDot"></span>
+      </button>
+
+      <button class="btn btn-pill btn-gold nav-login" id="navLoginBtn" data-i18n="nav.login">Log in</button>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ NOTIFICATION PANEL ============ -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header">
+    <h4 data-i18n="notif.title">Cameroonian Festivals</h4>
+    <button class="notif-close" id="notifClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="notif-list" id="notifList"></div>
+</div>
+
+<!-- ============ MOBILE MENU OVERLAY ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" class="mobile-link" data-i18n="nav.home">Home</a>
+  <a href="#explore" class="mobile-link" data-i18n="nav.explore">Explore</a>
+  <a href="#regions" class="mobile-link" data-i18n="nav.regions">Regions</a>
+  <a href="#culture" class="mobile-link" data-i18n="nav.culture">Culture</a>
+  <a href="#tourism" class="mobile-link" data-i18n="nav.tourism">Tourism</a>
+  <a href="#ai-assistant" class="mobile-link" data-i18n="nav.ai">AI Assistant</a>
+  <button class="lang-toggle lang-toggle--mobile" id="langToggleMobile" aria-label="Switch language">
+    <span class="lang-opt active" data-lang="en">EN</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt" data-lang="fr">FR</span>
+  </button>
+  <button class="btn btn-pill btn-gold mobile-login" id="mobileLoginBtn" data-i18n="nav.login">Log in</button>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rhumsiki%20peak%2C%20North%20Cameroon%20%2825989204581%29.jpg?width=1600" alt="Rhumsiki Peak in the Mandara Mountains, Far North Cameroon" loading="eager">
+      <div class="hero-scrim"></div>
+      <div class="toghu-band toghu-top" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content reveal">
+      <p class="eyebrow"><i class="fa-solid fa-leaf"></i> <span data-i18n="hero.eyebrow">Africa in Miniature</span></p>
+      <h1 class="hero-title" data-i18n-html="hero.title">Discover the<br><em>Soul</em> of Cameroon</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Explore Cameroon's cultures, traditions, languages, history, festivals, cuisine, and tourism through Artificial Intelligence.</p>
+      <div class="hero-actions">
+        <a href="#regions" class="btn btn-lg btn-primary">
+          <i class="fa-solid fa-compass"></i> <span data-i18n="hero.cta1">Explore Cameroon</span>
+        </a>
+        <a href="#ai-assistant" class="btn btn-lg btn-outline-light">
+          <i class="fa-solid fa-comments"></i> <span data-i18n="hero.cta2">Ask Deep AI</span>
+        </a>
+      </div>
+    </div>
+
+    <a href="#features" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- ============ LOCATION BANNER ============ -->
+  <div class="location-banner" id="locationBanner">
+    <i class="fa-solid fa-location-dot"></i>
+    <span id="locationText" data-i18n="location.prompt">Allow location to personalize your journey through Cameroon.</span>
+    <button class="btn btn-pill btn-gold" id="locationAllowBtn" data-i18n="location.allow">Allow</button>
+    <button class="location-dismiss" id="locationDismissBtn" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section features" id="features">
+    <div class="container">
+      <p class="section-eyebrow" data-i18n="features.eyebrow">What Deep offers</p>
+      <h2 class="section-title" data-i18n="features.title">One platform, the whole nation</h2>
+      <p class="section-lead" data-i18n="features.lead">Six ways to meet Cameroon — guided by AI, grounded in real culture.</p>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-green"><i class="fa-solid fa-robot"></i></div>
+          <h3 data-i18n="features.f1.title">AI Cultural Assistant</h3>
+          <p data-i18n="features.f1.desc">Ask anything about traditions, history or etiquette and get answers rooted in real Cameroonian sources.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-gold"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3 data-i18n="features.f2.title">Interactive Map</h3>
+          <p data-i18n="features.f2.desc">Move across all 10 regions on a living map that surfaces stories, sites, and people as you explore.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-red"><i class="fa-solid fa-masks-theater"></i></div>
+          <h3 data-i18n="features.f3.title">Cultural Heritage</h3>
+          <p data-i18n="features.f3.desc">A growing library of ethnic groups, languages, art forms, and oral histories, told with care.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-green"><i class="fa-solid fa-mountain-sun"></i></div>
+          <h3 data-i18n="features.f4.title">Tourism</h3>
+          <p data-i18n="features.f4.desc">Waterfalls, volcanoes, rainforests, and coastlines — plan a route through Cameroon's landscapes.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-gold"><i class="fa-solid fa-drum"></i></div>
+          <h3 data-i18n="features.f5.title">Festivals</h3>
+          <p data-i18n="features.f5.desc">Track Ngondo, Nguon, Medumba, and dozens of seasonal celebrations happening across the country.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-red"><i class="fa-solid fa-bowl-food"></i></div>
+          <h3 data-i18n="features.f6.title">Traditional Cuisine</h3>
+          <p data-i18n="features.f6.desc">Ndolé, achu, koki, and more — recipes, ingredients, and the stories behind every regional dish.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="toghu-band" aria-hidden="true"></div>
+
+  <!-- ============ EXPLORE / REGIONS ============ -->
+  <section class="section regions" id="regions">
+    <div class="container">
+      <p class="section-eyebrow" id="explore" data-i18n="regions.eyebrow">Explore Cameroon</p>
+      <h2 class="section-title" data-i18n="regions.title">Ten regions, one identity</h2>
+      <p class="section-lead" data-i18n="regions.lead">Each region carries its own languages, crafts, and rhythm. Start wherever calls to you.</p>
+      <div class="region-grid" id="regionGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ AI ASSISTANT ============ -->
+  <section class="section ai-section" id="ai-assistant">
+    <div class="toghu-band" aria-hidden="true"></div>
+    <div class="container ai-grid">
+      <div class="ai-copy reveal">
+        <p class="section-eyebrow section-eyebrow--light" data-i18n="ai.eyebrow">Meet Deep AI</p>
+        <h2 class="section-title section-title--light" data-i18n="ai.title">A guide who knows the country by heart</h2>
+        <p class="section-lead section-lead--light" data-i18n="ai.lead">Deep AI understands Cameroon's 10 regions, 250+ ethnic groups, and 280+ languages — ask it anything, in plain language.</p>
+
+        <ul class="ai-examples" id="aiExamples">
+          <li><button class="ai-chip" data-q="Tell me about the Bamileke people."><i class="fa-solid fa-quote-left"></i> <span data-i18n="ai.q1">"What's the story behind the Ngondo festival?"</span></button></li>
+          <li><button class="ai-chip" data-q="Recommend places to visit in the West Region."><i class="fa-solid fa-quote-left"></i> <span data-i18n="ai.q2">"Plan a 5-day cultural trip through the West Region."</span></button></li>
+          <li><button class="ai-chip" data-q="What is the Ngondo Festival?"><i class="fa-solid fa-quote-left"></i> <span data-i18n="ai.q3">"How do you prepare authentic ndolé?"</span></button></li>
+        </ul>
+
+        <a href="#ai-assistant" class="btn btn-lg btn-gold" id="askAiBtn">
+          <i class="fa-solid fa-message"></i> <span data-i18n="ai.cta">Ask Deep AI</span>
+        </a>
+      </div>
+
+      <div class="ai-illustration reveal">
+        <div class="chat-window">
+          <div class="chat-header">
+            <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
+            <span class="chat-title">Deep AI</span>
+            <span class="chat-status" id="chatStatus" data-i18n="ai.statusDemo">Demo mode</span>
+          </div>
+          <div class="chat-body" id="chatBody">
+            <div class="chat-bubble bubble-ai" data-i18n="ai.greeting">Hi! I'm Deep AI. Ask me anything about Cameroon's regions, ethnic groups, festivals, or cuisine.</div>
+          </div>
+          <form class="chat-input-row" id="chatForm">
+            <input type="text" id="chatInput" data-i18n-placeholder="ai.inputPlaceholder" placeholder="Ask about a region, festival, dish..." autocomplete="off">
+            <button type="submit" class="chat-send" aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATISTICS ============ -->
+  <section class="section stats" id="tourism">
+    <div class="container stats-grid">
+      <div class="stat-card reveal">
+        <span class="stat-number" data-count="10">0</span>
+        <span class="stat-label" data-i18n="stats.regions">Regions</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-number" data-count="250" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stats.ethnic">Ethnic Groups</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-number" data-count="280" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stats.languages">Languages</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-number" data-count="1000" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stats.traditions">Cultural Traditions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section testimonials">
+    <div class="container">
+      <p class="section-eyebrow" data-i18n="testimonials.eyebrow">Voices</p>
+      <h2 class="section-title" data-i18n="testimonials.title">What people are saying</h2>
+
+      <div class="testimonial-grid" id="testimonialGrid">
+        <article class="testimonial-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p data-i18n="testimonials.t1">"Deep helped me plan a trip to the Far North I never would have attempted alone. The AI answers felt genuinely local."</p>
+          <div class="testimonial-author">
+            <div class="avatar-initials avatar-1">AN</div>
+            <div><strong>Amara N.</strong></div>
+          </div>
+          <div class="reaction-bar" data-item-id="t-amara"></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p data-i18n="testimonials.t2">"As a teacher, I use the Heritage Library every week. It's the first resource that treats every region with equal depth."</p>
+          <div class="testimonial-author">
+            <div class="avatar-initials avatar-2">PE</div>
+            <div><strong>Paul E.</strong></div>
+          </div>
+          <div class="reaction-bar" data-item-id="t-paul"></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p data-i18n="testimonials.t3">"Finally a platform built for the diaspora. I learned more about my grandmother's region in one evening than in years."</p>
+          <div class="testimonial-author">
+            <div class="avatar-initials avatar-3">SK</div>
+            <div><strong>Solange K.</strong></div>
+          </div>
+          <div class="reaction-bar" data-item-id="t-solange"></div>
+        </article>
+      </div>
+
+      <div class="suggestion-box reveal" id="suggestionBox">
+        <h4 data-i18n="suggestion.title">Share your thoughts on Deep</h4>
+        <p id="suggestionHint" data-i18n="suggestion.hintLoggedOut">Create your Deep account to share a suggestion — it can appear right here.</p>
+        <form id="suggestionForm" class="suggestion-form" style="display:none;">
+          <textarea id="suggestionText" maxlength="220" rows="3" data-i18n-placeholder="suggestion.placeholder" placeholder="What would make Deep even better?"></textarea>
+          <button type="submit" class="btn btn-primary" data-i18n="suggestion.submit">Post suggestion</button>
+        </form>
+        <button class="btn btn-outline-dark" id="suggestionLoginBtn" data-i18n="suggestion.createAccount">Create your account</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMUNITY GALLERY ============ -->
+  <section class="section community-gallery" id="culture">
+    <div class="container">
+      <p class="section-eyebrow" data-i18n="community.eyebrow">Community</p>
+      <h2 class="section-title" data-i18n="community.title">Community Gallery</h2>
+      <p class="section-lead" data-i18n="community.lead">Share your own photos of Cameroon's culture and heritage — uploads and comments are open to logged-in Deep members.</p>
+
+      <div class="community-upload-box" id="communityUploadBox" style="display:none;">
+        <label class="upload-dropzone" for="communityPhotoInput">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span data-i18n="community.uploadLabel">Click to upload a photo</span>
+          <input type="file" id="communityPhotoInput" accept="image/*" hidden>
+        </label>
+      </div>
+
+      <div class="community-login-prompt" id="communityLoginPrompt">
+        <p data-i18n="community.loginHint">Create your Deep account to share photos with the community.</p>
+        <button class="btn btn-outline-dark" id="communityLoginBtn" data-i18n="suggestion.createAccount">Create your account</button>
+      </div>
+
+      <div class="community-scroll-wrapper">
+        <button class="scroll-arrow scroll-arrow--prev" id="communityScrollPrev" aria-label="Scroll left"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="community-grid" id="communityGrid"></div>
+        <button class="scroll-arrow scroll-arrow--next" id="communityScrollNext" aria-label="Scroll right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <p class="community-empty" id="communityEmpty" data-i18n="community.empty">No photos yet — be the first to share one!</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section cta-banner">
+    <div class="container cta-inner reveal">
+      <h2 data-i18n="cta.title">Built for Cameroon, powered by AI</h2>
+      <p data-i18n="cta.lead">Deep is a national initiative to preserve culture for the next generation — one conversation at a time.</p>
+      <button class="btn btn-lg btn-primary" id="ctaSignupBtn"><span data-i18n="cta.button">Get started</span> <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="toghu-band" aria-hidden="true"></div>
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <a href="#home" class="logo logo--footer">
+        <span class="logo-mark">D</span><span class="logo-text">Deep</span>
+      </a>
+      <p data-i18n="footer.tagline">An AI-powered platform preserving and showcasing the cultural heritage of Cameroon, region by region.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.links">Quick Links</h4>
+      <a href="#home" data-i18n="nav.home">Home</a>
+      <a href="#explore" data-i18n="nav.explore">Explore</a>
+      <a href="#regions" data-i18n="nav.regions">Regions</a>
+      <a href="#ai-assistant" data-i18n="nav.ai">AI Assistant</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year"></span> <span id="footerRights">Deep. Made with pride for Cameroon.</span></p>
+  </div>
+</footer>
+
+<!-- ============ SIGNUP / LOGIN MODAL ============ -->
+<div class="modal-overlay" id="authOverlay">
+  <div class="modal-card">
+    <button class="modal-close" id="authClose" aria-label="Close">&times;</button>
+
+    <div class="modal-head">
+      <span class="logo-mark">D</span>
+      <h3 id="authTitle" data-i18n="auth.title">Create your Deep account</h3>
+      <p id="authSubtitle" data-i18n="auth.subtitle">Save regions, get festival alerts, and pick up where you left off.</p>
+    </div>
+
+    <form id="authForm" class="modal-form">
+      <label class="field-group" id="nameField">
+        <span data-i18n="auth.name">Full name</span>
+        <input type="text" id="authName" placeholder="Marie Ngo" autocomplete="name">
+      </label>
+      <label class="field-group">
+        <span data-i18n="auth.email">Email</span>
+        <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" required>
+      </label>
+      <label class="field-group">
+          <span data-i18n="auth.email">Email</span>
+        <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" required>
+      </label>
+      <label class="field-group">
+        <span data-i18n="auth.password">Password</span>
+        <input type="password" id="authPassword" placeholder="••••••••" autocomplete="new-password" required minlength="6">
+      </label>
+
+      <button type="submit" class="btn btn-lg btn-primary modal-submit" id="authSubmit" data-i18n="auth.submit">Create account</button>
+    </form>
+
+    <p class="modal-switch">
+      <span id="authSwitchText" data-i18n="auth.switchToLogin">Already have an account?</span>
+      <button id="authSwitchBtn" data-i18n="auth.switchLoginBtn">Log in</button>
+    </p>
+    <p class="modal-note" data-i18n="auth.note">Demo account — stored on this device only, for the Cameroon ICT Innovation Week showcase.</p>
+  </div>
+</div>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
